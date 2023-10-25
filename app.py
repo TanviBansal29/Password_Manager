@@ -1,21 +1,12 @@
 from controllers import user_controller
 from controllers import admin_controller
+from utils.menu import menu_function
 
 USER_PROMPTS = '''
 Enter -
     1 - View data
     2 - Add new data
     3 - Delete your data 
-    
-    Press q to quit
-
-Enter your choice: '''
-
-USER_VIEW_PROMPTS = '''
-Enter -
-    1 - View all data
-    2 - View data by website
-    3 - View data by email
     
     Press q to quit
 
@@ -31,51 +22,35 @@ Enter -
 
 Enter your choice: '''
 
-ADMIN_VIEW_PROMPTS = '''
-Enter -
-    1 - View data by user
-    2 - View data by website
-    
-    Press q to quit
-
-Enter your choice: '''
-
-ADMIN_DELETE_PROMPTS = '''
-Enter -
-    1 - Delete user data
-    2 - Delete data by website
-    
-    Press q to quit
-
-Enter your choice: '''
-
 credentials = [
     {
-        'username' : 'Michael',
+        'user_id' : 'Michael',
         'password': '123456',
         'role' : 'admin'
     },
     {
-        'username' : 'David',
+        'user_id' : 'David',
         'password': 'qwerty',
         'role' : 'user'
     },
     {
-        'username' : 'John',
+        'user_id' : 'John',
         'password': 'asdfg',
         'role' : 'user'
     }
 ]
+
+user_controller.create_user_table()
 
 isLoggedIn = False
 role = 'user'
 
 def menu():
     print("Welcome to Password Manager!\nPlease enter your credentials...\n")
-    username = input("username: ")
+    user_id = input("user_id: ")
 
     for cred in credentials:
-        if cred['username'] == username:
+        if cred['user_id'] == user_id:
             password = input("password: ")
             if cred['password'] == password:
                 print("Logged in successfully.")
@@ -89,50 +64,40 @@ def menu():
         # your logic
         if role == 'admin':
             # admin logic
-            admin_input=input(ADMIN_PROMPTS)
+            print("WELCOME ADMIN!")
+            admin_input = input(ADMIN_PROMPTS)
             while admin_input != 'q' :
                 match admin_input:
                     case '1':
-                        admin_view_input = input(ADMIN_VIEW_PROMPTS)
-                        while admin_view_input != 'q':
-                            match admin_view_input :
-                                case '1':
-                                    admin_controller.view_data_by_user()
-                                case '2':
-                                    admin_controller.view_user_data_by_website()
+                        menu_function.admin_view_input()
                     case '2':
                         admin_controller.create_user()
                     case '3':
-                        admin_delete_input = input(ADMIN_DELETE_PROMPTS) 
-                        while admin_delete_input != 'q':
-                            match admin_delete_input :
-                                case '1':
-                                    admin_controller.delete_user()
-                                case '2':
-                                    admin_controller.delete_website_data()
-    
+                        menu_function.admin_delete_input()
+                    case _:
+                        print("Invalid input. Please try again...")      
+
+                admin_input = input(ADMIN_PROMPTS)
         else:
             # user logic
+            print("WELCOME USER!")
             user_input = input(USER_PROMPTS)
             while user_input != 'q':
                 match user_input:
                     case '1':
-                        user_view_input = input(USER_VIEW_PROMPTS)
-                        while user_view_input != 'q':
-                            match user_view_input:
-                                case '1':
-                                    user_controller.view_all_data()
-                                case '2':
-                                    user_controller.view_data_by_website()
-                                case '3':
-                                    user_controller.view_data_by_email()
-                                case _:
-                                    print("Invalid input. Please try again...")
+                        menu_function.user_view_input(user_id)
                     case '2':
-                        user_controller.add_data()
+                        username = input("Enter your username: ")
+                        website = input("Enter website name: ")
+                        email = input("Enter email: ")
+                        password = input("Enter password: ")
+                        user_controller.add_data(user_id, username, website, email, password)
                     case '3':
                         user_controller.delete_data()
+                    case _:
+                        print("Invalid input. Please try again...")    
 
+                user_input = input(USER_PROMPTS)
 
 if __name__ == "__main__":
     menu()
