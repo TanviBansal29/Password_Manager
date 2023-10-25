@@ -27,8 +27,13 @@ def view_user_data_by_website(website):
 def create_user():
     pass
 
-def delete_user():
-    pass
+def delete_user(user_id):
+    with DatabaseConnection('data.db') as connection:
+        cursor = connection.cursor()
+        cursor.execute("DELETE FROM users WHERE user_id = ?", (user_id, ))
 
-def delete_website_data():
-    pass
+def delete_website_data(website):
+    with DatabaseConnection('data.db') as connection:
+        cursor = connection.cursor()
+        cursor.execute("DELETE FROM users WHERE website = ?", (website, ))
+    

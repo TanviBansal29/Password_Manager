@@ -37,6 +37,21 @@ credentials = [
         'user_id' : 'John',
         'password': 'asdfg',
         'role' : 'user'
+    },
+    {
+        'user_id' : '2023001',
+        'password': 'abc123',
+        'role'  : 'user'
+    },
+    {
+        'user_id' : '2023002',
+        'password': 'xyz1212',
+        'role' : 'user'
+    },
+    {
+        'user_id' : '2023009',
+        'password': 'qwerty6565',
+        'role' : 'user'
     }
 ]
 
@@ -93,7 +108,9 @@ def menu():
                         password = input("Enter password: ")
                         user_controller.add_data(user_id, username, website, email, password)
                     case '3':
-                        user_controller.delete_data()
+                        website = input("Enter website name: ")
+                        email = input("Enter email: ")
+                        user_controller.delete_data(user_id, website, email)
                     case _:
                         print("Invalid input. Please try again...")    
 

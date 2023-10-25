@@ -59,9 +59,11 @@ def admin_delete_input():
     while admin_delete_input != 'q':
         match admin_delete_input :
             case '1':
-                admin_controller.delete_user()
+                user_id = input("Enter user_id: ")
+                admin_controller.delete_user(user_id)
             case '2':
-                admin_controller.delete_website_data()
+                website = input("Enter website name: ")
+                admin_controller.delete_website_data(website)
             case _:
                 print("Invalid input. Please try again...")
 
