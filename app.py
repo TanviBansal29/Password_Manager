@@ -22,79 +22,51 @@ Enter -
 
 Enter your choice: '''
 
-credentials = [
-    {
-        'user_id' : 'Michael',
-        'password': '123456',
-        'role' : 'admin'
-    },
-    {
-        'user_id' : 'David',
-        'password': 'qwerty',
-        'role' : 'user'
-    },
-    {
-        'user_id' : 'John',
-        'password': 'asdfg',
-        'role' : 'user'
-    },
-    {
-        'user_id' : '2023001',
-        'password': 'abc123',
-        'role'  : 'user'
-    },
-    {
-        'user_id' : '2023002',
-        'password': 'xyz1212',
-        'role' : 'user'
-    },
-    {
-        'user_id' : '2023009',
-        'password': 'qwerty6565',
-        'role' : 'user'
-    }
-]
-
 user_controller.create_user_table()
-
-isLoggedIn = False
-role = 'user'
+user_controller.create_credentials_table()
 
 def menu():
     print("Welcome to Password Manager!\nPlease enter your credentials...\n")
-    user_id = input("user_id: ")
+    while True:
+        username = input("Enter your username:- ")
+        password = input("Enter your password:- ")
+        role = menu_function.fetch_user(username,password)
+        if role != None:
+            break
+    if role[4] == 'admin':
+        # admin logic
+        print("WELCOME ADMIN!")
+        admin_input = input(ADMIN_PROMPTS)
+        while admin_input != 'q' :
+            match admin_input:
+                case '1':
+                    menu_function.admin_view_input()
+                case '2':
+                    while True:
+                        username = input("Set username:- ")
+                        if menu_function.fetch_username(username):
+                            print("Username already exists! Please try new username...")
+                        else:
+                            break    
+                    password = input("Set password:- ")
 
-    for cred in credentials:
-        if cred['user_id'] == user_id:
-            password = input("password: ")
-            if cred['password'] == password:
-                print("Logged in successfully.")
-                isLoggedIn = True
-                role = cred['role']
-                break
-    else:
-        print("Invalid credentials!")
+                    admin_controller.create_user(username, password)
+                case '3':
+                    menu_function.admin_delete_input()
+                case _:
+                    print("Invalid input. Please try again...")      
 
-    if isLoggedIn:
-        # your logic
-        if role == 'admin':
-            # admin logic
-            print("WELCOME ADMIN!")
             admin_input = input(ADMIN_PROMPTS)
-            while admin_input != 'q' :
-                match admin_input:
-                    case '1':
-                        menu_function.admin_view_input()
-                    case '2':
-                        admin_controller.create_user()
-                    case '3':
-                        menu_function.admin_delete_input()
-                    case _:
-                        print("Invalid input. Please try again...")      
-
-                admin_input = input(ADMIN_PROMPTS)
-        else:
-            # user logic
+    else:
+        # user logic
+        is_default = role[3]
+        user_id = role[0]
+        if is_default == 0:
+            print("PLEASE UPDATE YOUR PASSWORD!")
+            new_password = input("Enter new password:- ")
+            menu_function.update_password(user_id, new_password)
+    
+        else:    
             print("WELCOME USER!")
             user_input = input(USER_PROMPTS)
             while user_input != 'q':

@@ -1,4 +1,7 @@
 from controllers import admin_controller, user_controller
+from utils.database_connection import DatabaseConnection
+
+from queries import queries
 
 # config, json, yaml
 
@@ -89,4 +92,32 @@ def user_view_input(user_id):
             case _:
                 print("Invalid input. Please try again...")
 
-        user_view_input = input(USER_VIEW_PROMPTS)        
+        user_view_input = input(USER_VIEW_PROMPTS)    
+
+def fetch_user(username, password):
+    with DatabaseConnection('data.db') as connection:
+        cursor = connection.cursor()
+        cursor.execute(queries.QUERY_TO_VERIFY_LOGIN, (username, password, ))
+        result = cursor.fetchone()
+        if result == None:
+            print("INVALID LOGIN! PLEASE TRY AGAIN....")
+            return None
+        else:
+            return result   
+        
+def update_password(user_id, password):
+    with DatabaseConnection('data.db') as connection:
+        cursor = connection.cursor()
+        cursor.execute(queries.QUERY_TO_UPDATE_DEFAULT_PASSWORD, (password, user_id, ))
+
+        
+def fetch_username(username):
+    with DatabaseConnection('data.db') as connection:
+        cursor = connection.cursor()
+        record = cursor.execute(queries.QUERY_TO_CHECK_USERNAME, (username, )).fetchall()
+        return record
+
+
+
+
+       
