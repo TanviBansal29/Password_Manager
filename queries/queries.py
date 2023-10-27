@@ -37,7 +37,7 @@ QUERY_TO_DELETE_USER = '''DELETE FROM users WHERE user_id = ?
                         '''
 
 
-QUERY_TO_DELETE_USER_DATA = '''"DELETE FROM users WHERE website = ?
+QUERY_TO_DELETE_WEBSITE_DATA = '''"DELETE FROM users WHERE website = ?
                             '''
 
 

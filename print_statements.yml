@@ -1,0 +1,34 @@
+WELCOME_MESSAGE : "Welcome to Password Manager!\nPlease enter your credentials...\n"
+
+ENTER_USERNAME : "Enter your username:- "
+
+ENTER_PASSWORD : "Enter your password:- "
+
+WELCOME_ADMIN : "WELCOME ADMIN!"
+
+SET_USERNAME : "Set username:- "
+
+USERNAME_ERROR : "Username already exists! Please try new username..."
+
+SET_PASSWORD : "Set password:- "
+
+INVALID_PROMPT : "Invalid input. Please try again..."
+
+UPDATE_PASSWORD : "PLEASE UPDATE YOUR PASSWORD!"
+
+NEW_PASSWORD : "Enter new password:- "
+
+WELCOME_USER : "WELCOME USER!"
+
+ENTER_WEBSITE : "Enter website name: "
+
+ENTER_EMAIL : "Enter email: "
+
+PASSWORD : "Enter password: "
+
+INVALID_LOGIN : "INVALID LOGIN! PLEASE TRY AGAIN...."
+
+ENTER_USERID : "Enter user_id: "
+
+NO_DATA : "No data exists.."
+
