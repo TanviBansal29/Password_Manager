@@ -24,6 +24,7 @@ class Config:
     INVALID_LOGIN = None
     ENTER_USERID = None
     NO_DATA = None
+    QUERY_TO_VIEW_ALL_DATA = None
         
 
     @classmethod
@@ -68,6 +69,7 @@ class Config:
             cls.QUERY_TO_CREATE_CREDENTIALS_TABLE = data['QUERY_TO_CREATE_CREDENTIALS_TABLE']
             cls.QUERY_TO_VIEW_ALL_USER_DATA = data['QUERY_TO_VIEW_ALL_USER_DATA']
             cls.QUERY_TO_VIEW_DATA_BY_USER = data['QUERY_TO_VIEW_DATA_BY_USER']
+            cls.QUERY_TO_VIEW_USER_DATA_BY_WEBSITE = data['QUERY_TO_VIEW_USER_DATA_BY_WEBSITE']
             cls.QUERY_TO_CREATE_USER= data['QUERY_TO_CREATE_USER']
             cls.QUERY_TO_DELETE_USER = data['QUERY_TO_DELETE_USER']
             cls.QUERY_TO_ENALE_FOREIGN_KEY = data['QUERY_TO_ENALE_FOREIGN_KEY']

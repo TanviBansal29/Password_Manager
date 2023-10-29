@@ -28,7 +28,7 @@ QUERY_TO_VIEW_DATA_BY_USER : SELECT user_id, username, website, email FROM users
                  
 
 
-QUERY_TO_VIEW_USER_DATA_BY_WEBSITE : SELECT user_id, username, website, email FROM users WHERE website = ?'''
+QUERY_TO_VIEW_USER_DATA_BY_WEBSITE : SELECT user_id, username, website, email FROM users WHERE website = ?
 
 
 QUERY_TO_CREATE_USER : INSERT INTO credentials (username, password) VALUES (?, ?)

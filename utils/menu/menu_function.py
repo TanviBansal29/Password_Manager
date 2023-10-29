@@ -17,12 +17,12 @@ def admin_view_input():
                 print(data)
             case '2':
                 user_id = input(Config.ENTER_USERID)
-                admin_controller.view_data_by_user(user_id)
+                data = admin_controller.view_data_by_user(user_id)
+                print(data)
                 
             case '3':
                 website = input(Config.ENTER_WEBSITE)
-                data = admin_controller.view_user_data_by_website(website)
-                print(data)
+                admin_controller.view_user_data_by_website(website)
             case _:
                 print(Config.INVALID_PROMPT)
 
@@ -52,19 +52,16 @@ def user_view_input(user_id):
     while user_view_input != 'q':
         match user_view_input:
             case '1':
-                data = user_controller.view_all_data(user_id)
+                user_controller.view_all_data(user_id)
                 # password = data[3]
                 # password = encrypt.decrypt_password(cipher_password)
-                print(data)
                 # print("password: ", password)
             case '2':
                 website = input(Config.ENTER_WEBSITE)
-                data = user_controller.view_data_by_website(user_id, website)
-                print(data)
+                user_controller.view_data_by_website(user_id, website)
             case '3':
                 email = input(Config.ENTER_EMAIL)
-                data = user_controller.view_data_by_email(user_id, email)
-                print(data)
+                user_controller.view_data_by_email(user_id, email)
             case _:
                 print(Config.INVALID_PROMPT)
 

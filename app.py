@@ -4,8 +4,6 @@ from utils.menu import menu_function
 from config.config import Config
 # from utils import encrypt
 
-#all print statements to constants
-
 def menu():
     print(Config.WELCOME_MESSAGE)
     while True:
@@ -47,8 +45,7 @@ def menu():
             print(Config.UPDATE_PASSWORD)
             new_password = input(Config.NEW_PASSWORD)
             # cipher_password = encrypt.encrypt_password(new_password)
-            menu_function.update_password(user_id,password)
-    
+            menu_function.update_password(user_id,new_password)
         else:    
             print(Config.WELCOME_USER)
             user_input = input(Config.USER_PROMPTS)
