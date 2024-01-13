@@ -1,0 +1,53 @@
+USER_VIEW_PROMPTS : |
+  Enter -
+      1 - View all data
+      2 - View data by website
+      3 - View data by email
+      
+      Press q to quit
+
+  Enter your choice: 
+
+ADMIN_VIEW_PROMPTS : |
+  Enter -
+      1 - View all user data
+      2 - View data by user
+      3 - View data by website
+      
+      Press q to quit
+
+  Enter your choice:  
+
+
+ADMIN_DELETE_PROMPTS : |
+  Enter -
+      1 - Delete user data
+      2 - Delete data by website
+      
+      Press q to quit
+
+  Enter your choice:
+
+
+USER_PROMPTS : |
+  Enter -
+      1 - View data
+      2 - Add new data
+      3 - Delete your data 
+      
+      Press q to quit
+
+  Enter your choice:
+
+
+ADMIN_PROMPTS : |
+  Enter -
+      1 - View data
+      2 - Create new user
+      3 - Delete user data 
+      
+      Press q to quit
+
+  Enter your choice:
+
+DATABASE_NAME : 'src\\data.db'
