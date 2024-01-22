@@ -1,6 +1,7 @@
 from flask import Flask
 from resources.admin import blp as AdminBlp
 from resources.auth import blp as LoginBlp
+from resources.user import blp as UserBlp
 from flask_smorest import Api
 from config.config import Config
 from controllers import user_controller
@@ -24,6 +25,7 @@ jwt = JWTManager(app)
 
 api.register_blueprint(AdminBlp) #Adminblp gets connected to Flask app
 api.register_blueprint(LoginBlp)
+api.register_blueprint(UserBlp)
 
 
 if __name__ == "__main__":

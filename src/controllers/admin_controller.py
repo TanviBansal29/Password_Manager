@@ -9,7 +9,6 @@ def view_all_user_data():
         if row.rowcount == 0:
             print(Config.NO_DATA)
         data = cursor.fetchall()
-        print(data)
         return data
 
 def view_data_by_user(user_id):
