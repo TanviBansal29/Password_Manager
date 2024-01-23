@@ -18,3 +18,14 @@ def add_data():
     password = request_data["password"]
     user_controller.add_data(user_id, username, website, email, password)
     return {'message' : 'Successfully added data'}
+
+@blp.route("/users/mydata")
+@jwt_required()
+@access_control("admin", "user")
+def view_all_data():
+    user_id = get_jwt_identity()
+    data = user_controller.view_all_data(user_id)
+    if not data:
+        abort(404, message = "No data found")
+    return data
+

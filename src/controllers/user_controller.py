@@ -13,7 +13,7 @@ def create_credentials_table():
         cursor = connection.cursor()
         cursor.execute(Config.QUERY_TO_ENALE_FOREIGN_KEY)
         cursor.execute(Config.QUERY_TO_CREATE_CREDENTIALS_TABLE)
-        
+    
 
 def add_data(user_id, username, website, email, password):
     with DatabaseConnection(Config.DATABASE_NAME) as connection:
@@ -27,10 +27,10 @@ def view_all_data(user_id):
         cursor = connection.cursor()
         row = cursor.execute(Config.QUERY_TO_VIEW_ALL_DATA, (user_id, ))
         if row.rowcount == -1:
-            print(Config.NO_DATA)
+            return 
         else:
             data = cursor.fetchall()
-            print(data)    
+            return data  
 
 
 def view_data_by_website(user_id, website):
