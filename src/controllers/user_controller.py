@@ -26,7 +26,7 @@ def view_all_data(user_id):
     with DatabaseConnection(Config.DATABASE_NAME) as connection:
         cursor = connection.cursor()
         row = cursor.execute(Config.QUERY_TO_VIEW_ALL_DATA, (user_id, ))
-        if row.rowcount == -1:
+        if row.rowcount == 0:
             return 
         else:
             data = cursor.fetchall()
