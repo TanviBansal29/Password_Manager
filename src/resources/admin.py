@@ -1,34 +1,31 @@
-from flask_smorest import Blueprint, abort
-from flask_jwt_extended import jwt_required, get_jwt
-from flask import request
+from fastapi import APIRouter, HTTPException
 from controllers import admin_controller
 from utils.menu.menu_function import fetch_username
 
-blp = Blueprint("admin", __name__)
+router =APIRouter(prefix='/admin', tags=['admin'])
+
+# def access_control(*role):
+#     def inner(func):
+#         def wrapper(*args, **kwargs):
+#             jwt = get_jwt()
+#             get_role = jwt["role"]
+#             if get_role in role:
+#                 return func(*args, **kwargs)
+#             else:
+#                 abort(401, message = "You are not authorized to access these resource.")
+#         return wrapper
+#     return inner
 
 
-def access_control(*role):
-    def inner(func):
-        def wrapper(*args, **kwargs):
-            jwt = get_jwt()
-            get_role = jwt["role"]
-            if get_role in role:
-                return func(*args, **kwargs)
-            else:
-                abort(401, message = "You are not authorized to access these resource.")
-        return wrapper
-    return inner
-
-
-@blp.post("/users")
-@access_control("admin")
-def create_user():
-    request_data = request.get_json()
+@router.post("/users")
+def create_user(request_data: UserSchema):
+    request_data = dict(request_data)
     username = request_data["username"]
     password = request_data["password"]
     user = fetch_username(username)
     if user:
-        abort(400, message = "User already exists.")
+        raise HTTPException(400, "User already exists")
+        # abort(400, message = "User already exists.")
     admin_controller.create_user(username, password)
     return {'message' : 'User created'}
 
