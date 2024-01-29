@@ -19,6 +19,7 @@ def add_data():
     user_controller.add_data(user_id, username, website, email, password)
     return {'message' : 'Successfully added data'}
 
+
 @blp.route("/users/mydata")
 @jwt_required()
 @access_control("admin", "user")
