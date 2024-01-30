@@ -29,7 +29,7 @@ class Config:
 
     @classmethod
     def load(cls):
-        with open('src\\config\\config.yml','r') as f:
+        with open('config\\config.yml','r') as f:
             data = yaml.safe_load(f)
             cls.USER_VIEW_PROMPTS = data['USER_VIEW_PROMPTS']
             cls.ADMIN_VIEW_PROMPTS = data['ADMIN_VIEW_PROMPTS']
@@ -40,7 +40,7 @@ class Config:
 
     @classmethod
     def load_print_statement(cls):
-        with open('src\\config\\print_statements.yml','r') as f:
+        with open('config\\print_statements.yml','r') as f:
             data = yaml.safe_load(f)
             cls.WELCOME_MESSAGE = data['WELCOME_MESSAGE']
             cls.ENTER_USERNAME = data['ENTER_USERNAME'] 
@@ -62,7 +62,7 @@ class Config:
 
     @classmethod
     def load_queries(cls):
-        with open('src\\config\\queries.yml','r') as f:
+        with open('config\\queries.yml','r') as f:
             data = yaml.safe_load(f)
             cls.QUERY_TO_CREATE_USERS_TABLE = data['QUERY_TO_CREATE_USERS_TABLE']
             cls.QUERY_TO_CREATE_CREDENTIALS_TABLE = data['QUERY_TO_CREATE_CREDENTIALS_TABLE']
@@ -83,8 +83,6 @@ class Config:
             cls.QUERY_TO_DELETE_WEBSITE_DATA = data['QUERY_TO_DELETE_WEBSITE_DATA']
 
 
-
-
-
-
-
+Config.load_print_statement()
+Config.load_queries()
+Config.load()

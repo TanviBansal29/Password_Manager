@@ -12,6 +12,7 @@ def menu():
         role = menu_function.fetch_user(username,password)
         if role != None:
             break
+        
     if role[4] == 'admin':
         print(Config.WELCOME_ADMIN)
         admin_input = input(Config.ADMIN_PROMPTS)

@@ -50,4 +50,4 @@ ADMIN_PROMPTS : |
 
   Enter your choice:
 
-DATABASE_NAME : 'src\\data.db'
+DATABASE_NAME : 'mydb.db'

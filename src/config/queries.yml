@@ -13,7 +13,7 @@ QUERY_TO_CREATE_USERS_TABLE : |
 QUERY_TO_CREATE_CREDENTIALS_TABLE : |   
                                     CREATE TABLE IF NOT EXISTS credentials(
                                     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                                    user_name TEXT,
+                                    username TEXT,
                                     password TEXT,
                                     role TEXT,
                                     is_default INTEGER

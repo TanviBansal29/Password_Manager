@@ -1,8 +1,9 @@
 from fastapi import APIRouter, HTTPException
 from controllers import admin_controller
 from utils.menu.menu_function import fetch_username
+from schemas.schemas import UserSchema
 
-router =APIRouter(prefix='/admin', tags=['admin'])
+router =APIRouter(tags=['Admin'])
 
 # def access_control(*role):
 #     def inner(func):
@@ -30,47 +31,53 @@ def create_user(request_data: UserSchema):
     return {'message' : 'User created'}
 
 
-@blp.route("/users")
-@jwt_required()
-@access_control("admin")
+@router.get("/users")
+# @jwt_required()
+# @access_control("admin")
 def view_all_user_data():
     data = admin_controller.view_all_user_data()
     if not data:
-        abort(404, message = "No data found for users.")
+        raise HTTPException(404, "No data found for users.")
     return data
 
 
-@blp.route("/users/<int:user_id>")
-@jwt_required()
-@access_control("admin")
-def view_data_by_user(user_id):
+@router.get("/users/{user_id}")
+# @jwt_required()
+# @access_control("admin")
+def view_data_by_user(user_id: int):
     data = admin_controller.view_data_by_user(user_id)
     if not data:
-        abort(404, message = f"No data found for user_id = {user_id}.")
+        raise HTTPException(404, f"No data found for user_id = {user_id}.")
     return data
 
 
-@blp.route("/users/<string:website>")
-@access_control("admin")
-def view_user_data_by_website(website):
+@router.get("/users/website/{website}")
+# @access_control("admin")
+def view_user_data_by_website(website: str):
+    print("hi")
     data = admin_controller.view_user_data_by_website(website)
+    print(data)
     if not data:
-        abort(404, message = f"No data found for {website}.")
+        raise HTTPException(404, f"No data found for {website}.")
     return data 
 
 
-@blp.delete("/users/<int:user_id>")
-@jwt_required()
-@access_control("admin")
-def delete_user(user_id):
-    admin_controller.delete_user(user_id)
-    return {f'message': 'User with user_id = {user_id} deleted'}
+@router.delete("/users/{user_id}")
+# @jwt_required()
+# @access_control("admin")
+def delete_user(user_id: int):
+    data = admin_controller.view_data_by_user(user_id)
+    if data:
+        admin_controller.delete_user(user_id)
+        return {f'User with user_id = {user_id} deleted'}
+    else:
+        return {f'Data does not exists for user_id = {user_id}'}
 
 
-@blp.delete("/website/<string:website>")
-@jwt_required()
-@access_control("admin")
-def delete_website_data(website):
+@router.delete("/website/{website}")
+# @jwt_required()
+# @access_control("admin")
+def delete_website_data(website : str):
     admin_controller.delete_website_data(website)
     return {'message': 'Users deleted'}
 

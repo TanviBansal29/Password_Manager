@@ -3,11 +3,11 @@ import sqlite3
 class DatabaseConnection:
     
     def __init__(self, file):
-        self.connection = None
-        self.file = file
+        self.connection = sqlite3.connect(file)
+        # self.file = file
 
     def __enter__(self):
-        self.connection = sqlite3.connect(self.file)
+        # self.connection = 
         return self.connection    
     
     def __exit__(self, exe_type, exe_val, exe_tb):
