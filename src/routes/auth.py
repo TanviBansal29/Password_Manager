@@ -41,6 +41,8 @@ def login_user(login_data: UserSchema):
     #     refresh_token = None
     #     return {"access_token": access_token, "refresh_token": refresh_token}
 
+# @router.post('/logout')
+# def logout(claims)
 
 
 @router.post("/refresh")
