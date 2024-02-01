@@ -3,7 +3,7 @@ from utils.menu.menu_function import fetch_user
 from utils.tokens import create_access_token, create_refresh_token
 
 
-class AuthController:
+class AuthBusiness:
     def login(login_data):
         username = login_data["username"]
         password = login_data["password"]

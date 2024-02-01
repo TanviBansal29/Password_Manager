@@ -1,9 +1,9 @@
 # from app import FastAPI
 from fastapi import FastAPI
 from controllers.user_controller import create_credentials_table, create_user_table
-from resources.auth import router as AuthRouter
-from resources.admin import router as AdminRouter
-from resources.user import router as UserRouter
+from routes.auth import router as AuthRouter
+from routes.admin import router as AdminRouter
+from routes.user import router as UserRouter
 
 create_user_table()
 create_credentials_table()
