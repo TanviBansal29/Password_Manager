@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from controllers import admin_controller
-from utils.menu.menu_function import fetch_username
+# from utils.menu.menu_function import fetch_username
 from schemas.schemas import InformationSchema
 from controllers import user_controller
 # from resources.admin import access_control

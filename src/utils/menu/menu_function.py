@@ -60,15 +60,7 @@ def user_view_input(user_id):
 
         user_view_input = input(Config.USER_VIEW_PROMPTS)    
 
-def fetch_user(username, password):
-    with DatabaseConnection(Config.DATABASE_NAME) as connection:
-        cursor = connection.cursor()
-        cursor.execute(Config.QUERY_TO_VERIFY_LOGIN, (username, password, ))
-        result = cursor.fetchone()
-        if result == None:
-            return None
-        else:
-            return result   
+
         
 def update_password(user_id, password):
     with DatabaseConnection(Config.DATABASE_NAME) as connection:
@@ -76,12 +68,7 @@ def update_password(user_id, password):
         cursor.execute(Config.QUERY_TO_UPDATE_DEFAULT_PASSWORD, (password, user_id, ))
 
         
-def fetch_username(username):
-    with DatabaseConnection(Config.DATABASE_NAME) as connection:
-        cursor = connection.cursor()
-        cursor.execute(Config.QUERY_TO_CHECK_USERNAME, (username, ))
-        record = cursor.fetchone()
-        return record
+
 
 
 

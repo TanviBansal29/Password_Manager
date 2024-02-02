@@ -60,5 +60,4 @@ def delete_data(user_id, website, email):
     with DatabaseConnection(Config.DATABASE_NAME) as connection:
         cursor = connection.cursor()
         cursor.execute(Config.QUERY_TO_ENALE_FOREIGN_KEY)
-        cursor.execute(Config.QUERY_TO_DELETE_DATA, (user_id, website, email, ))    
-    
+        cursor.execute(Config.QUERY_TO_DELETE_DATA, (user_id, website, email, )) 
