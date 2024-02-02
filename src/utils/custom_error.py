@@ -3,3 +3,6 @@ class InvalidCredentials(Exception):
 
 class DataAlreadyExists(Exception):
     pass
+
+class DataNotFoundError(Exception):
+    pass

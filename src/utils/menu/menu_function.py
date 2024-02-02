@@ -60,7 +60,6 @@ def user_view_input(user_id):
 
         user_view_input = input(Config.USER_VIEW_PROMPTS)    
 
-
         
 def update_password(user_id, password):
     with DatabaseConnection(Config.DATABASE_NAME) as connection:

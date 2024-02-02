@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from controllers.admin_controller import AdminController
 from schemas.schemas import UserSchema
 
@@ -9,55 +9,47 @@ def create_user(register_data: UserSchema):
     '''Create a new user'''
 
     admin_obj = AdminController()
-    print("hehe")
     return admin_obj.register(register_data)
 
 
-# @router.get("/users")
-# def view_all_user_data():
-#     data = admin_controller.view_all_user_data()
-#     if not data:
-#         raise HTTPException(404, "No data found for users.")
-#     return data
+@router.get("/users")
+def view_all_user_data():
+    '''View all user data'''
+    admin_obj = AdminController()
+    return admin_obj.view_all_user_data()
 
 
-# @router.get("/users/{user_id}")
-# # @jwt_required()
+@router.get("/users/user_id/{user_id}")
 # # @access_control("admin")
-# def view_data_by_user(user_id: int):
-#     data = admin_controller.view_data_by_user(user_id)
-#     if not data:
-#         raise HTTPException(404, f"No data found for user_id = {user_id}.")
-#     return data
+def view_data_by_user(user_id: str):
+    '''View user data by user_id'''
+    admin_obj = AdminController()
+    return admin_obj.view_data_by_user(user_id)
 
 
-# @router.get("/users/website/{website}")
+@router.get("/users/website/<website>")
 # # @access_control("admin")
-# def view_user_data_by_website(website: str):
-#     print("hi")
-#     data = admin_controller.view_user_data_by_website(website)
-#     print(data)
-#     if not data:
-#         raise HTTPException(404, f"No data found for {website}.")
-#     return data 
+def view_user_data_by_website(website: str):
+    '''View users data by website'''
+    admin_obj = AdminController()
+    return admin_obj.view_user_data_by_website(website)
 
 
-# @router.delete("/users/{user_id}")
-# # @jwt_required()
+@router.delete("/users/{user_id}")
 # # @access_control("admin")
-# def delete_user(user_id: int):
-#     data = admin_controller.view_data_by_user(user_id)
-#     if data:
-#         admin_controller.delete_user(user_id)
-#         return {f'User with user_id = {user_id} deleted'}
-#     else:
-#         return {f'Data does not exists for user_id = {user_id}'}
+def delete_user(user_id: str):
+    '''Delete a user'''
+
+    admin_obj = AdminController()
+    return admin_obj.delete_user_data(user_id)
 
 
 # @router.delete("/website/{website}")
-# # @jwt_required()
-# # @access_control("admin")
+# # # @jwt_required()
+# # # @access_control("admin")
 # def delete_website_data(website : str):
-#     admin_controller.delete_website_data(website)
-#     return {'message': 'Users deleted'}
+#     '''Delete data by website'''
+#     admin_obj =
+# #     admin_controller.delete_website_data(website)
+# #     return {'message': 'Users deleted'}
 

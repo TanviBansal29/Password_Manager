@@ -1,35 +1,33 @@
-from fastapi import APIRouter, HTTPException
-from controllers import admin_controller
-# from utils.menu.menu_function import fetch_username
+from typing import Annotated
+from fastapi import APIRouter, Depends
 from schemas.schemas import InformationSchema
-from controllers import user_controller
-# from resources.admin import access_control
+from controllers.user_controller import UserController
+from utils.tokens import get_jwt
 
 router = APIRouter(tags=['User'])
+user_dependency = Annotated[dict, Depends(get_jwt)]
 
 @router.post("/users/data")
-# @jwt_required()
-# @access_control("admin", "user")
-def add_data(new_data : InformationSchema):
-    new_data = dict(new_data)
-    # user_id = get_jwt_identity()
-    user_id = None
-    username = new_data["username"]
-    website = new_data["password"]
-    email = new_data["email"]
-    password = new_data["password"]
-    user_controller.add_data(user_id, username, website, email, password)
-    return {'message' : 'Successfully added data'}
+def add_data(claims: user_dependency, new_data : InformationSchema):
+    'user will add own data'
+    user_id = claims.get('sub')
+    user_obj = UserController(user_id, dict(new_data))
+    return user_obj.add_data()
 
 
 @router.get("/users/mydata")
-# @jwt_required()
-# @access_control("admin", "user")
-def view_all_data():
-    # user_id = get_jwt_identity()
-    user_id = None
-    data = user_controller.view_all_data(user_id)
-    if not data:
-        raise HTTPException(404, "No data found")
-    return data
+def view_all_data(claims: user_dependency):
+    'user will see own data'
+    user_id = claims.get('sub')
+    user_obj = UserController(user_id)
+    return user_obj.view_all_data()
+
+
+@router.get("/users/mydata/website/<website>")
+def view_data_by_website(claims: user_dependency , website :str):
+    'user will see own data by website'
+    user_id = claims.get('sub')
+    user_obj = UserController(user_id)
+    return user_obj.view_data_by_website(website)
+
 

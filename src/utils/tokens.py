@@ -19,7 +19,7 @@ def create_access_token(identity:str, fresh: bool, additional_claims: Dict):
         'fresh': fresh,
         'iat': iat,
         'type': 'access',
-        'sub': identity,
+        'sub': str(identity),
         'exp': exp
     }
     payload.update(additional_claims)
