@@ -22,7 +22,6 @@ def add_data(
 
 @router.get("/users/mydata", status_code=status.HTTP_200_OK)
 def view_all_data(claims: user_dependency):
-    print("ji")
     "user will see own data"
     user_id = claims.get("sub")
     user_obj = UserController(user_id)
