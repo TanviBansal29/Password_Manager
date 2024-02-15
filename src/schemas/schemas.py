@@ -1,15 +1,17 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 
 class UserSchema(BaseModel):
-    username: str 
+    username: str
     password: str
 
+
 class InformationSchema(BaseModel):
-    username : str
-    website : str
-    email : str
-    password : str
+    username: str
+    website: str
+    email: str
+    password: str
+
 
 class LoginResponse(BaseModel):
     access_token: str

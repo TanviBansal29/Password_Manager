@@ -1,5 +1,3 @@
-import sqlite3
-
 from fastapi import HTTPException
 from business.user_business import UserBusiness
 from utils.custom_error import DataAlreadyExists, DataNotFoundError
