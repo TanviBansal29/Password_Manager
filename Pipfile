@@ -9,6 +9,7 @@ pyyaml = "*"
 python-jose = "*"
 python-dotenv = "*"
 jinja2 = "*"
+python-multipart = "*"
 
 [dev-packages]
 
