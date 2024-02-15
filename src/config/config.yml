@@ -47,6 +47,8 @@ ADMIN_PROMPTS: |
 
   Enter your choice:
 
-DATABASE_NAME: "mydb.db"
+# DATABASE_NAME: "mydb.db"
+
+# DBPath = os.path.join(path_current_directory, "../database/data.db")
 
 TEST_DB_NAME: "tests/test_routes/testdb.db"

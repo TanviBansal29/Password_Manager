@@ -15,7 +15,7 @@ class Config:
     ADMIN_DELETE_PROMPTS = None
     USER_PROMPTS = None
     ADMIN_PROMPTS = None
-    DATABASE_NAME = None
+    DATABASE_NAME = os.path.join(path_current_directory, "../mydb.db")
     WELCOME_MESSAGE = None
     ENTER_USERNAME = None
     ENTER_PASSWORD = None
@@ -45,7 +45,7 @@ class Config:
             cls.ADMIN_DELETE_PROMPTS = data["ADMIN_DELETE_PROMPTS"]
             cls.USER_PROMPTS = data["USER_PROMPTS"]
             cls.ADMIN_PROMPTS = data["ADMIN_PROMPTS"]
-            cls.DATABASE_NAME = data["DATABASE_NAME"]
+            # cls.DATABASE_NAME = data["DATABASE_NAME"]
             cls.TEST_DB_NAME = data["TEST_DB_NAME"]
 
     @classmethod
